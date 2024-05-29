@@ -8,34 +8,49 @@ public class VoitureTest {
     void testCreateVoiture(){
         String marque = "BMW";
         int prix = 42000;
-
         Voiture v1 = new Voiture(marque, prix);
 
-        assertEquals(42000, v1.getPrix());
-        assertEquals("BMW", v1.getMarque());
+        String expectedMarque = "BMW";
+        int expectedPrix = 42000;
 
+        assertEquals(expectedMarque, v1.getMarque(), "Marque de la voiture incorrecte");
+        assertEquals(expectedPrix, v1.getPrix(), "Prix de la voiture incorrect");
     }
 
     @Test
     void testSetVoiture(){
-        String marque = "Ferrari";
-        int prix = 120000;
+        String marqueOrigin = "Ferrari";
+        int prixOrigin = 120000;
+        Voiture v2 = new Voiture(marqueOrigin, prixOrigin);
 
-        Voiture v2 = new Voiture(marque, prix);
+        String expectedMarque = "Susuki";
+        int expectedPrix = 80000;
 
-        System.out.println(v2);
+        v2.setMarque(expectedMarque);
+        v2.setPrix(expectedPrix);
 
-        v2.setMarque("Suzuki");
+        assertNotEquals(marqueOrigin, v2.getMarque(), "La marque n'a pas été modifié");
+        assertEquals(expectedMarque, v2.getMarque(), "La marque modifié n'est pas le bon");
 
-        System.out.println(v2);
+        assertNotEquals(prixOrigin, v2.getPrix(), "Le prix n'a pas été modifié");
+        assertEquals(expectedPrix, v2.getPrix(), "Le prix modifié n'est pas le bon");
+    }
 
-        assertNotEquals(marque, v2.getMarque());
+    @Test
+    void testToStringVoiture(){
+        String marque = "Peugeot";
+        int prix = 5000;
+        Voiture v3 = new Voiture(marque, prix);
 
-        v2.setPrix(80000);
+        String toString = v3.toString();
 
-        System.out.println(v2);
+        String expectedMarque = "Peugeot";
+        int expectedPrix = 5000;
 
-        assertNotEquals(prix, v2.getPrix());
+        assertTrue(toString.contains(expectedMarque), "La valeur retourné par toString ne contient pas la marque" + v3);
+
+        assertTrue(toString.contains(String.valueOf(expectedPrix)), "La valeur retourné par toString ne contient pas le prix" + v3);
+
     }
 
 }
