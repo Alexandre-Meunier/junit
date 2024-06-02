@@ -1,3 +1,4 @@
+import data.Voiture;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,6 +51,14 @@ public class VoitureTest {
         assertTrue(toString.contains(expectedMarque), "La valeur retourné par toString ne contient pas la marque" + v3);
 
         assertTrue(toString.contains(String.valueOf(expectedPrix)), "La valeur retourné par toString ne contient pas le prix" + v3);
+    }
+
+    @Test
+    void test_SetPrix_Return_Throws_Arithmetic_Exception_When_Prix_Is_Negative(){
+        String marque = "Peugeot";
+        int prix = -5000;
+
+        assertThrows(ArithmeticException.class, () -> new Voiture(marque, prix), "Problème exception prix négatif");
 
     }
 

@@ -1,11 +1,13 @@
+package data;
+
 public class Voiture {
 
     private String marque;
     private int prix;
 
     public Voiture(String marque, int prix) {
-        this.marque = marque;
-        this.prix = prix;
+        setMarque(marque);
+        setPrix(prix);
     }
 
     public String getMarque() {
@@ -20,7 +22,10 @@ public class Voiture {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(int prix) throws ArithmeticException {
+        if(prix < 0){
+            throw new ArithmeticException("Prix négatif!");
+        }
         this.prix = prix;
     }
 
