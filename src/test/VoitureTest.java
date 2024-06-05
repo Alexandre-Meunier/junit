@@ -1,4 +1,3 @@
-import data.Voiture;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VoitureTest {
 
     @Test
-    void testCreateVoiture(){
+    void test_CreateVoiture_Should_return_same_marque_and_prix_of_instanciate_car(){
         String marque = "BMW";
-        int prix = 42000;
+        double prix = 42000;
         Voiture v1 = new Voiture(marque, prix);
 
         String expectedMarque = "BMW";
@@ -19,13 +18,13 @@ public class VoitureTest {
     }
 
     @Test
-    void testSetVoiture(){
+    void test_SetMarque_and_SetPrix_should_change_good_marque_and_prix(){
         String marqueOrigin = "Ferrari";
-        int prixOrigin = 120000;
+        double prixOrigin = 120000;
         Voiture v2 = new Voiture(marqueOrigin, prixOrigin);
 
         String expectedMarque = "Susuki";
-        int expectedPrix = 80000;
+        double expectedPrix = 80000;
 
         v2.setMarque(expectedMarque);
         v2.setPrix(expectedPrix);
@@ -38,15 +37,15 @@ public class VoitureTest {
     }
 
     @Test
-    void testToStringVoiture(){
+    void test_ToString_should_contains_same_marque_and_prix_of_instanciate_car(){
         String marque = "Peugeot";
-        int prix = 5000;
+        double prix = 5000;
         Voiture v3 = new Voiture(marque, prix);
 
         String toString = v3.toString();
 
         String expectedMarque = "Peugeot";
-        int expectedPrix = 5000;
+        double expectedPrix = 5000;
 
         assertTrue(toString.contains(expectedMarque), "La valeur retourné par toString ne contient pas la marque" + v3);
 
@@ -56,10 +55,44 @@ public class VoitureTest {
     @Test
     void test_SetPrix_Return_Throws_Arithmetic_Exception_When_Prix_Is_Negative(){
         String marque = "Peugeot";
-        int prix = -5000;
+        double prix = -5000;
 
         assertThrows(ArithmeticException.class, () -> new Voiture(marque, prix), "Problème exception prix négatif");
 
     }
 
+    @Test
+    void test_equals_should_return_true_with_the_same_object_car(){
+        String marque1 = "Peugeot";
+        double prix1 = 5000;
+        Voiture v1 = new Voiture(marque1, prix1);
+
+        assertTrue(v1.equals(v1), "La voiture ne peux pas être différente d'elle même");
+    }
+
+    @Test
+    void test_equals_should_return_true_with_the_other_same_object_car(){
+        String marque1 = "Peugeot";
+        double prix1 = 5000;
+        Voiture v1 = new Voiture(marque1, prix1);
+
+        String marque2 = "Peugeot";
+        double prix2 = 5000;
+        Voiture v2 = new Voiture(marque2, prix2);
+
+        assertTrue(v1.equals(v2), "La voiture ne peux pas être différente d'une copie d'elle'");
+    }
+
+    @Test
+    void test_equals_should_return_false_with_the_different_object_car(){
+        String marque1 = "Peugeot";
+        double prix1 = 5000;
+        Voiture v1 = new Voiture(marque1, prix1);
+
+        String marque2 = "BMW";
+        double prix2 = 30000;
+        Voiture v2 = new Voiture(marque2, prix2);
+
+        assertFalse(v1.equals(v2), "Les voitures doivent être différents");
+    }
 }

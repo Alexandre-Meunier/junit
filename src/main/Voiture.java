@@ -1,11 +1,11 @@
-package data;
+import java.util.Objects;
 
 public class Voiture {
 
     private String marque;
-    private int prix;
+    private double prix;
 
-    public Voiture(String marque, int prix) {
+    public Voiture(String marque, double prix) {
         setMarque(marque);
         setPrix(prix);
     }
@@ -18,11 +18,11 @@ public class Voiture {
         this.marque = marque;
     }
 
-    public int getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) throws ArithmeticException {
+    public void setPrix(double prix) throws ArithmeticException {
         if(prix < 0){
             throw new ArithmeticException("Prix négatif!");
         }
@@ -32,5 +32,13 @@ public class Voiture {
     @Override
     public String toString() {
         return "marque = " + marque + ", prix = " + prix;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Voiture voiture = (Voiture) o;
+        return getPrix() == voiture.getPrix() && Objects.equals(getMarque(), voiture.getMarque());
     }
 }
