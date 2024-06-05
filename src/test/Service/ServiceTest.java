@@ -1,3 +1,5 @@
+package Service;
+
 import data.Voiture;
 import service.Service;
 import org.junit.jupiter.api.*;
@@ -22,7 +24,7 @@ public class ServiceTest {
 
         ArrayList<Voiture> voitures = s.getVoitures();
         assertEquals(3, voitures.size(), "Nombre de voitures incorrect");
-        assertEquals("a", voitures.get(0).getMarque(), "Voiture incorrect");
+        Assertions.assertEquals("a", voitures.get(0).getMarque(), "Voiture incorrect");
     }
 
     @Test
