@@ -80,9 +80,9 @@ public class VoitureTest {
 
         String marque2 = "Peugeot";
         double prix2 = 5000;
-        Voiture v2 = new Voiture(marque2, prix2);
+        Voiture expectedv2 = new Voiture(marque2, prix2);
 
-        assertTrue(v1.equals(v2), "La voiture ne peux pas être différente d'une copie d'elle'");
+        assertTrue(v1.equals(expectedv2), "La voiture ne peux pas être différente d'une copie d'elle'");
     }
 
     @Test
@@ -93,8 +93,8 @@ public class VoitureTest {
 
         String marque2 = "BMW";
         double prix2 = 30000;
-        Voiture v2 = new Voiture(marque2, prix2);
+        Voiture expectedv2 = new Voiture(marque2, prix2);
 
-        assertFalse(v1.equals(v2), "Les voitures doivent être différents");
+        assertFalse(v1.equals(expectedv2), "Les voitures doivent être différents");
     }
 }
