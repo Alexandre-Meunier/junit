@@ -42,18 +42,15 @@ public class ServiceTest {
     }
 
     @Test
-    void test_prix_when_five_voitures_good_price_with_remise(){
-        ArrayList<Voiture> voitures = new ArrayList<Voiture>(Arrays.asList(
-                new Voiture("a", 200000),
-                new Voiture("b", 200000),
-                new Voiture("c", 200000),
-                new Voiture("d", 200000),
-                new Voiture("e", 300000)
-        ));
-
-        Service s = new Service(voitures);
-
-
+    void test_prix_when_six_voitures_good_price_with_remise(){
+        Service s = new Service();
+        s.ajouter(new Voiture("a", 10000));
+        s.ajouter(new Voiture("b", 10000));
+        s.ajouter(new Voiture("c", 10000));
+        s.ajouter(new Voiture("d", 10000));
+        s.ajouter(new Voiture("e", 10000));
+        s.ajouter(new Voiture("f", 10000));
+        s.ajouter(new Voiture("g", 10000));
 
         System.out.println(s.prix());
         //assertEquals(300, s.prix(), "Error price");
@@ -64,12 +61,5 @@ public class ServiceTest {
         Service s1 = new Service();
 
         assertThrows(ArithmeticException.class, () -> s1.prix(), "Error constructor Service()");
-    }
-
-    @Test
-    void test_prix_when_zero_voitures_return_ArithmeticException_with_constuctor_Service_parameters(){
-        Service s2 = new Service(new ArrayList<Voiture>());
-
-        assertThrows(ArithmeticException.class, () -> s2.prix(), "Error constructor Service(ArrayList<data.Voiture> Voitures)");
     }
 }

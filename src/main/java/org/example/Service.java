@@ -6,31 +6,13 @@ public class Service implements Statistique{
 
     private ArrayList<Voiture> voitures;
 
-    private int nbRemises;
-
     public Service(){
         voitures = new ArrayList<Voiture>();
-    }
-
-    public Service(ArrayList<Voiture> voitures) {
-
-        if(voitures.isEmpty()){
-            this.voitures = voitures;
-        }else{
-            this.voitures = new ArrayList<Voiture>();
-            for(int i=0;i<voitures.size();i++){
-                ajouter(voitures.get(i));
-            }
-        }
     }
 
     @Override
     public void ajouter(Voiture voiture) {
         voitures.add(voiture);
-        // Pas la meilleure option parce que ca créer une dépendance entre les constructeurs et ajouter()
-        if(nbVoitures()%5==0){
-            nbRemises += 1;
-        }
     }
 
     /**
@@ -39,28 +21,36 @@ public class Service implements Statistique{
     @Override
     public int prix() throws ArithmeticException {
 
-        System.out.println(nbRemises);
-        if(nbVoitures()==0){
+        int nbVoitures = nbVoitures()-1;
+
+        if(nbVoitures==0){
             throw new ArithmeticException("Il n'y a pas de voiture");
         }
 
         int prix = 0;
-        int resNbRemises = nbRemises;
-        float remiseTotal = 0;
+        boolean remise=false;
+        int remisePrix=0;
 
-        for(int i=0;i<nbVoitures();i++){
-            double prixVoiture = voitures.get(i).getPrix();
+        while(nbVoitures%5!=0){
+            prix += (int) voitures.get(nbVoitures).getPrix();
+            nbVoitures-=1;
+            remise = true;
+        }
+        System.out.println(prix);
 
-            for(int e=0;e<resNbRemises;e++){
-                System.out.println(remiseTotal);
-                double remise = prixVoiture * 0.05f;
-                if(remiseTotal+remise <= 20000){
-                    prixVoiture -= remise;
-                    remiseTotal += remise;
-                }
+        if(remise){
+            while(nbVoitures>=0){
+                System.out.println(nbVoitures);
+                Voiture voiture = voitures.get(nbVoitures);
+
+                int r = (int) (voiture.getPrix() * 0.05);
+                remisePrix += r;
+                prix += (int) (voiture.getPrix() * 0.95);
+
+                System.out.println("prix" + prix);
+                nbVoitures -= 1;
+
             }
-
-            prix += prixVoiture;
         }
 
         return prix;
