@@ -79,7 +79,7 @@ public class VoitureTest {
         Voiture v1 = new Voiture(marque1, prix1);
 
         String marque2 = "Peugeot";
-        double prix2 = 0;
+        double prix2 = 5000;
         Voiture expectedv2 = new Voiture(marque2, prix2);
 
         assertTrue(v1.equals(expectedv2), "La voiture ne peux pas être différente d'une copie d'elle'");
