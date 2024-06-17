@@ -1,12 +1,12 @@
-package org.example;
+package fr.r402;
 
 import java.util.ArrayList;
 
-public class Service implements Statistique{
+public class StatistiqueVoiture implements Statistique {
 
     private ArrayList<Voiture> voitures;
 
-    public Service(){
+    public StatistiqueVoiture(){
         voitures = new ArrayList<Voiture>();
     }
 
@@ -21,11 +21,13 @@ public class Service implements Statistique{
     @Override
     public int prix() throws ArithmeticException {
 
-        int nbVoitures = nbVoitures()-1;
+        int nbVoitures = nbVoitures();
 
         if(nbVoitures==0){
             throw new ArithmeticException("Il n'y a pas de voiture");
         }
+
+        nbVoitures -= 1;
 
         int prix = 0;
         boolean remise=false;

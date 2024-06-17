@@ -1,5 +1,6 @@
+package fr.r402;
 
-import org.example.Voiture;
+import fr.r402.Voiture;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;

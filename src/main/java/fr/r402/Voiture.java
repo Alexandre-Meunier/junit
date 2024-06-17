@@ -1,4 +1,4 @@
-package org.example;
+package fr.r402;
 
 import java.util.Objects;
 
