@@ -22,19 +22,20 @@ public class StatistiqueVoiture implements Statistique {
     public int prix() throws ArithmeticException {
 
         int nbVoitures = nbVoitures();
+        System.out.println(nbVoitures());
 
         if(nbVoitures==0){
             throw new ArithmeticException("Il n'y a pas de voiture");
         }
 
-        nbVoitures -= 1;
-
         int prix = 0;
         boolean remise=false;
         int remisePrix=0;
 
+        System.out.println("nb1 : " + nbVoitures + "; nb2 : " + nbVoitures());
+
         while(nbVoitures%5!=0){
-            prix += (int) voitures.get(nbVoitures).getPrix();
+            prix += (int) voitures.get(nbVoitures-1).getPrix();
             nbVoitures-=1;
             remise = true;
         }
@@ -49,7 +50,7 @@ public class StatistiqueVoiture implements Statistique {
                 remisePrix += r;
                 prix += (int) (voiture.getPrix() * 0.95);
 
-                System.out.println("prix" + prix);
+                System.out.println("prix : " + prix);
                 nbVoitures -= 1;
 
             }

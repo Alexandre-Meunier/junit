@@ -60,6 +60,7 @@ public class VoitureTest {
         String marque = "Peugeot";
         double prix = -5000;
 
+        // Le constructeur appel setPrix et setVoiture
         assertThrows(ArithmeticException.class, () -> new Voiture(marque, prix), "Problème exception prix négatif");
 
     }
